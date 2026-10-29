@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#2563eb"
+  >
+
+  <meta
+    name="description"
+    content="Senior Saathi - Digital Literacy and Safety Learning App for Senior Citizens"
+  >
+
+  <title>Senior Saathi</title>
+
+  <link rel="stylesheet" href="./style.css">
+
+  <link
+    rel="manifest"
+    href="manifest.json"
+  >
+  <link rel="icon" type="image/png" href="icon-192.png">
+</head>
+<body>
+
+  <!-- PROFILE MODAL -->
+  <div id="profileModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="profileHeading">
+    <div class="modal-content profile-modal">
+      <button id="closeProfile" class="modal-close" type="button" aria-label="Close profile">×</button>
+
+      <div class="profile-modal-heading">
+        <div class="profile-avatar" id="profileAvatarPreview" aria-live="polite">👤</div>
+        <span class="profile-eyebrow">YOUR LEARNING SPACE</span>
+        <h2 id="profileHeading">My Profile</h2>
+        <p class="profile-subtitle">Personalise your Senior Saathi experience</p>
+      </div>
+
+      <div class="profile-progress-panel">
+        <div class="profile-progress-copy">
+          <span>Learning progress</span>
+          <strong id="profileProgressText">0 of 6 modules completed</strong>
+        </div>
+        <progress id="profileProgress" max="6" value="0">0%</progress>
+      </div>
+
+      <label for="profileName">Your name <span aria-hidden="true">*</span></label>
+      <input id="profileName" type="text" placeholder="Enter your name" maxlength="30" autocomplete="name" required>
+
+      <label for="profileAge">Your age <span aria-hidden="true">*</span></label>
+      <input id="profileAge" type="number" placeholder="Enter your age" min="1" max="120" inputmode="numeric" required>
+
+      <fieldset class="profile-avatar-picker">
+        <legend>Choose an animated senior avatar <span>(optional)</span></legend>
+        <div class="profile-avatar-choices">
+          <button class="avatar-choice" type="button" data-avatar-choice="elder-woman" aria-label="Choose female senior avatar" aria-pressed="false">
+            <span class="avatar-choice-art" data-avatar-art="elder-woman"></span>
+            <span>Female</span>
+          </button>
+          <button class="avatar-choice" type="button" data-avatar-choice="elder-man" aria-label="Choose male senior avatar" aria-pressed="false">
+            <span class="avatar-choice-art" data-avatar-art="elder-man"></span>
+            <span>Male</span>
+          </button>
+        </div>
+      </fieldset>
+
+      <div class="profile-photo-actions">
+        <label class="profile-upload-button" for="profilePhotoInput">＋ Upload your photo</label>
+        <input id="profilePhotoInput" type="file" accept="image/*" class="visually-hidden">
+        <button id="clearProfileAvatar" class="profile-clear-button" type="button">Use initials</button>
+      </div>
+      <p class="profile-photo-note">Your photo or selected avatar stays on this device and appears on your certificate.</p>
+
+      <button id="saveProfile" class="primary-button profile-save-button" type="button">Save Profile</button>
+    </div>
+  </div>
+
+  <!-- =========================
+       APP LOADER
+  ========================== -->
+
+  <div id="appLoader" class="app-loader">
+    <div class="loader-logo">🧓</div>
+
+    <h2>Senior Saathi</h2>
+
+    <p>Digital learning made simple</p>
+
+    <div class="loader-spinner"></div>
+  </div>
+
+  
+<!-- SENIOR SAATHI LOGIN SCREEN -->
+<section id="authScreen" class="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">👵 📱</div>
+    <h1>Welcome to Senior Saathi</h1>
+    <p>Sign in to save your learning progress.</p>
+
+    <form id="emailLoginForm">
+      <label for="loginEmail">Your email address</label>
+      <input
+        id="loginEmail"
+        type="email"
+        placeholder="Enter your email"
+        autocomplete="email"
+        required
+      >
+      <button type="submit" id="sendOtpButton">Send login code</button>
+    </form>
+
+    <form id="verifyOtpForm" class="hidden">
+      <label for="loginOtp">Enter the code from your email</label>
+      <input
+        id="loginOtp"
+        type="text"
+        inputmode="numeric"
+        autocomplete="one-time-code"
+        placeholder="Enter verification code"
+        required
+      >
+      <button type="submit">Verify and sign in</button>
+    </form>
+
+    <div class="demo-login-divider"><span>Presentation demo</span></div>
+    <button type="button" id="demoLoginButton" class="demo-login-button">
+      Open Demo App
+    </button>
+
+    <p id="authMessage" role="status" aria-live="polite"></p>
+  </div>
+</section>
+<!-- END LOGIN SCREEN -->
+
+
+
+  <!-- =========================
+       MAIN APP
+  ========================== -->
+
+  <div id="app" class="app">
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="top-header">
+
+      <div class="brand">
+
+        <div class="brand-icon" role="img" aria-label="Senior citizen avatar">
+          <svg class="brand-avatar-art" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+            <path d="M7 64c1-13 9-21 22-22h6c13 1 21 9 22 22Z" fill="#e8edff"/>
+            <path d="m22 44 10 11 10-11-3-7H25Z" fill="#fff"/>
+            <path d="m29 53 3 4 3-4-3-4Z" fill="#8064dc"/>
+            <path d="M26 35h12v11q-6 7-12 0Z" fill="#e9b993"/>
+            <path d="M15 29c-2-13 5-21 17-21s19 8 17 21l-3 10q-4 5-9 5H27q-6 0-10-5Z" fill="#eabf9e"/>
+            <path d="M15 27C13 16 19 8 29 7c11-2 21 5 20 18l-4-2c-4-1-8-3-11-7-4 6-10 9-18 10Z" fill="#edf2f7"/>
+            <path d="M17 24q-5 5-3 12l4 4m29-16q5 5 3 12l-4 4" fill="#d8e1ec"/>
+            <path d="M19 29h9a4 4 0 0 1 4 4v1a4 4 0 0 1-4 4h-5a4 4 0 0 1-4-4Zm17 0h9v5a4 4 0 0 1-4 4h-5a4 4 0 0 1-4-4v-1a4 4 0 0 1 4-4Z" fill="none" stroke="#526278" stroke-width="1.7"/>
+            <path d="M32 33h4m-8 11q4 3 8 0" fill="none" stroke="#526278" stroke-width="1.7" stroke-linecap="round"/>
+            <circle cx="25" cy="33" r="1" fill="#39485a"/><circle cx="41" cy="33" r="1" fill="#39485a"/>
+          </svg>
+        </div>
+
+        <div class="brand-text">
+          <h1>Senior Saathi</h1>
+          <p id="brandSubtitle">
+            Digital Learning Companion
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="header-actions">
+
+        <button
+          id="languageButton"
+          class="header-button"
+          aria-label="Change language"
+        >
+          🌐 <span id="currentLanguage">English</span>
+        </button>
+        <button id="profileButton" class="header-button profile-button" type="button">
+          <span id="profileButtonAvatar" class="profile-button-avatar" aria-hidden="true">👤</span>
+          <span>Profile</span>
+        </button>
+
+        <button
+          id="themeButton"
+          class="icon-button"
+          aria-label="Change theme"
+        >
+          🌙
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <!-- =========================
+         WELCOME SECTION
+    ========================== -->
+
+    <main>
+
+      <section class="welcome-section">
+
+        <div class="welcome-content">
+
+          <span class="welcome-badge">
+            🌟 Welcome
+          </span>
+
+          <h1 id="welcomeTitle">Hello! Welcome to Senior Saathi</h1>
+
+        <h2 id="dashboardWelcomeTitle">
+            Hello! Welcome to Senior Saathi
+          </h2>
+
+          <p id="welcomeDescription">
+            Learn smartphones, digital payments, internet
+            and online safety step by step.
+          </p>
+
+
+          <div class="name-section">
+
+            <label for="userName" id="nameLabel">
+              What should we call you?
+            </label>
+
+            <div class="name-input-row">
+
+              <input
+                type="text"
+                id="userName"
+                placeholder="Enter your name"
+                autocomplete="name"
+              >
+
+              <button
+                id="saveNameButton"
+                class="primary-button"
+              >
+                Continue →
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="welcome-illustration">
+
+          <div class="illustration-circle">
+            📱
+          </div>
+
+          <div class="floating-icon icon-one">
+            💳
+          </div>
+
+          <div class="floating-icon icon-two">
+            💬
+          </div>
+
+          <div class="floating-icon icon-three">
+            🛡️
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           DASHBOARD
+      ========================== -->
+
+      <section
+        id="dashboard"
+        class="dashboard-section"
+      >
+
+        <div class="section-heading">
+
+          <div>
+            <span class="section-label">
+              📚 Learn
+            </span>
+
+            <h2 id="dashboardTitle">
+              Digital Learning Modules
+            </h2>
+
+            <p id="dashboardDescription">
+              Choose a topic and learn at your own pace.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- ==========================================
+     SENIOR SAATHI LEARNING CAROUSEL
+========================================== -->
+
+<section class="learning-carousel" aria-label="Senior Saathi learning tips">
+
+  <button
+    class="carousel-arrow carousel-prev"
+    id="carouselPrev"
+    type="button"
+    aria-label="Previous"
+  >
+    ←
+  </button>
+
+  <div class="carousel-window">
+
+    <div class="carousel-track" id="carouselTrack">
+
+      <article class="learning-slide slide-blue">
+        <div class="slide-art"></div>
+        <div class="slide-content">
+          <h3>Smartphone Basics</h3>
+          <p>Learn your smartphone step by step.</p>
+        </div>
+        <span class="slide-arrow">→</span>
+      </article>
+
+      <article class="learning-slide slide-green">
+        <div class="slide-art"></div>
+        <div class="slide-content">
+          <h3>Safe UPI Payments</h3>
+          <p>Learn safe digital payments.</p>
+        </div>
+        <span class="slide-arrow">→</span>
+      </article>
+
+      <article class="learning-slide slide-pink">
+        <div class="slide-art"></div>
+        <div class="slide-content">
+          <h3>Cyber Safety</h3>
+          <p>Never share your OTP or UPI PIN.</p>
+        </div>
+        <span class="slide-arrow">→</span>
+      </article>
+
+      <article class="learning-slide slide-whatsapp">
+        <div class="slide-art"></div>
+        <div class="slide-content">
+          <h3>WhatsApp</h3>
+          <p>Messages, calls, photos and privacy.</p>
+        </div>
+        <span class="slide-arrow">→</span>
+      </article>
+
+      <article class="learning-slide slide-purple">
+        <div class="slide-art"></div>
+        <div class="slide-content">
+          <h3>Internet & Google</h3>
+          <p>Search online safely and confidently.</p>
+        </div>
+        <span class="slide-arrow">→</span>
+      </article>
+
+      <article class="learning-slide slide-orange">
+        <div class="slide-art"></div>
+        <div class="slide-content">
+          <h3>Check Links</h3>
+          <p>Think before opening unknown links.</p>
+        </div>
+        <span class="slide-arrow">→</span>
+      </article>
+
+      <article class="learning-slide slide-sky">
+        <div class="slide-art"></div>
+        <div class="slide-content">
+          <h3>Learn at Your Pace</h3>
+          <p>Learn comfortably with Senior Saathi.</p>
+        </div>
+        <span class="slide-arrow">→</span>
+      </article>
+
+    </div>
+
+  </div>
+
+  <button
+    class="carousel-arrow carousel-next"
+    id="carouselNext"
+    type="button"
+    aria-label="Next"
+  >
+    →
+  </button>
+
+</section>
+
+<div class="carousel-dots" id="carouselDots"></div>
+
+
+        <!-- =========================
+             PROGRESS CARD
+        ========================== -->
+
+        <div class="progress-card">
+
+          <div class="progress-info">
+
+            <div>
+              <span id="progressLabel">
+                Your Progress
+              </span>
+
+              <strong id="progressPercent">
+                0%
+              </strong>
+            </div>
+
+            <span id="progressText">
+              Start your first lesson
+            </span>
+
+          </div>
+
+          <div class="progress-track">
+
+            <div
+              id="progressBar"
+              class="progress-bar"
+              style="width: 0%"
+            ></div>
+
+          </div>
+
+        </div>
+
+
+        <!-- =========================
+             MODULE GRID
+        ========================== -->
+
+        <div
+          id="moduleGrid"
+          class="module-grid"
+        >
+
+          <!-- MODULE 1 -->
+
+          <article
+            class="module-card"
+            data-module="smartphone"
+          >
+
+            <div class="module-icon blue">
+              📱
+            </div>
+
+            <div class="module-content">
+
+              <span class="module-number">
+                Module 01
+              </span>
+
+              <h3>
+                Smartphone Basics
+              </h3>
+
+              <p>
+                Learn basic phone controls,
+                settings and useful features.
+              </p>
+
+              <button
+                class="module-button"
+                data-module="smartphone"
+              >
+                Start Learning →
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <!-- MODULE 2 -->
+
+          <article
+            class="module-card"
+            data-module="whatsapp"
+          >
+
+            <div class="module-icon green">
+              💬
+            </div>
+
+            <div class="module-content">
+
+              <span class="module-number">
+                Module 02
+              </span>
+
+              <h3>
+                WhatsApp
+              </h3>
+
+              <p>
+                Learn messaging, photos,
+                calls and privacy settings.
+              </p>
+
+              <button
+                class="module-button"
+                data-module="whatsapp"
+              >
+                Start Learning →
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <!-- MODULE 3 -->
+
+          <article
+            class="module-card"
+            data-module="payments"
+          >
+
+            <div class="module-icon purple">
+              💳
+            </div>
+
+            <div class="module-content">
+
+              <span class="module-number">
+                Module 03
+              </span>
+
+              <h3>
+                Digital Payments
+              </h3>
+
+              <p>
+                Learn UPI, QR payments and
+                important payment safety tips.
+              </p>
+
+              <button
+                class="module-button"
+                data-module="payments"
+              >
+                Start Learning →
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <!-- MODULE 4 -->
+
+          <article
+            class="module-card"
+            data-module="internet"
+          >
+
+            <div class="module-icon orange">
+              🌐
+            </div>
+
+            <div class="module-content">
+
+              <span class="module-number">
+                Module 04
+              </span>
+
+              <h3>
+                Internet & Google
+              </h3>
+
+              <p>
+                Learn searching, websites,
+                videos and useful online services.
+              </p>
+
+              <button
+                class="module-button"
+                data-module="internet"
+              >
+                Start Learning →
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <!-- MODULE 5 -->
+
+          <article
+            class="module-card"
+            data-module="safety"
+          >
+
+            <div class="module-icon red">
+              🛡️
+            </div>
+
+            <div class="module-content">
+
+              <span class="module-number">
+                Module 05
+              </span>
+
+              <h3>
+                Cyber Safety
+              </h3>
+
+              <p>
+                Learn about scams, OTP safety,
+                passwords and suspicious links.
+              </p>
+
+              <button
+                class="module-button"
+                data-module="safety"
+              >
+                Start Learning →
+              </button>
+
+            </div>
+
+          </article>
+
+
+          <!-- MODULE 6 -->
+
+          <article
+            class="module-card"
+            data-module="services"
+          >
+
+            <div class="module-icon teal">
+              🏛️
+            </div>
+
+            <div class="module-content">
+
+              <span class="module-number">
+                Module 06
+              </span>
+
+              <h3>
+                Digital Services
+              </h3>
+
+              <p>
+                Learn about useful government,
+                travel and everyday digital services.
+              </p>
+
+              <button
+                class="module-button"
+                data-module="services"
+              >
+                Start Learning →
+              </button>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           QUICK ACTIONS
+      ========================== -->
+
+      <section class="quick-section" id="quickAccessSection">
+
+        <div class="section-heading">
+
+          <div>
+
+            <span class="section-label">
+              ⚡ Quick Access
+            </span>
+
+            <h2>
+              Practice & Safety
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="quick-grid">
+
+          <button
+            id="quizButton"
+            class="quick-card"
+          >
+
+            <span class="quick-icon">
+              🧠
+            </span>
+
+            <span>
+              <strong>Practice Quiz</strong>
+              <small>Test your knowledge</small>
+            </span>
+
+          </button>
+
+
+          <button
+            id="scamButton"
+            class="quick-card"
+          >
+
+            <span class="quick-icon">
+              🛡️
+            </span>
+
+            <span>
+              <strong>Scam Practice</strong>
+              <small>Learn to identify scams</small>
+            </span>
+
+          </button>
+
+          <button
+            id="nearbyCentresButton"
+            class="quick-card nearby-centres-card"
+            type="button"
+          >
+            <span class="quick-icon">🏫</span>
+            <span>
+              <strong id="nearbyCardTitle">Nearby Centres</strong>
+              <small id="nearbyCardDescription">Find learning and support places near you</small>
+            </span>
+          </button>
+
+
+          
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           DIGITAL SAFETY TIP
+      ========================== -->
+
+      <section id="nearbyCentresSection" class="nearby-centres-section hidden" aria-labelledby="nearbyCentresHeading">
+        <div class="nearby-centres-header">
+          <div>
+            <span class="section-label" id="nearbySectionLabel">📍 Nearby</span>
+            <h2 id="nearbyCentresHeading">Nearby Centres</h2>
+            <p id="nearbyIntro">Search OpenStreetMap for education, community, and digital learning places.</p>
+          </div>
+          <button id="nearbyBackButton" class="secondary-button" type="button">← Back to dashboard</button>
+        </div>
+
+        <div class="nearby-search-card">
+          <label for="nearbyLocationInput" id="nearbyLocationLabel">City, area, or locality</label>
+          <div class="nearby-search-row">
+            <input id="nearbyLocationInput" type="search" autocomplete="address-level2" placeholder="For example: Pune, Kothrud" />
+            <button id="nearbySearchButton" class="primary-button" type="button">Search area</button>
+          </div>
+
+          <div class="nearby-options-row">
+            <div>
+              <label for="nearbyRadius" id="nearbyRadiusLabel">Search radius</label>
+              <select id="nearbyRadius">
+                <option value="2000">2 km</option>
+                <option value="5000" selected>5 km</option>
+                <option value="10000">10 km</option>
+              </select>
+            </div>
+            <button id="nearbyUseLocationButton" class="secondary-button" type="button">Use my current location</button>
+          </div>
+          <p class="nearby-privacy-note" id="nearbyPrivacyNote">Your browser will ask before sharing your location. Search places are OpenStreetMap listings and are not verified training providers.</p>
+        </div>
+
+        <p id="nearbyStatus" class="nearby-status" role="status" aria-live="polite"></p>
+        <button id="nearbyRetryButton" class="secondary-button hidden" type="button">Retry search</button>
+        <div id="nearbyResults" class="nearby-results" aria-live="polite"></div>
+        <p class="nearby-attribution">Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a></p>
+      </section>
+
+      <section class="safety-tip" id="safetyTipSection">
+
+        <div class="tip-icon">
+          🔐
+        </div>
+
+        <div>
+
+          <span>
+            Digital Safety Tip
+          </span>
+
+          <h3 id="safetyTipText">
+            Never share your OTP, UPI PIN
+            or password with anyone.
+          </h3>
+
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- =====================================
+     SENIOR SAATHI CERTIFICATE
+===================================== -->
+
+<section class="certificate-section" id="certificateSection">
+  <div class="certificate-card">
+    <div class="certificate-icon">🏆</div>
+
+    <h2>Certificate of Completion</h2>
+
+    <p id="certificateStatus">
+      Complete all 6 modules to unlock your certificate.
+    </p>
+
+    <button
+      type="button"
+      id="certificateButton"
+      class="certificate-button"
+      disabled
+      onclick="showCertificate()">
+      🎓 Get My Certificate
+    </button>
+  </div>
+</section>
+
+<!-- CERTIFICATE PREVIEW -->
+
+<div id="certificateModal" class="certificate-modal hidden">
+  <div class="certificate-paper" id="certificatePaper">
+    <div class="certificate-border">
+
+      <div class="certificate-brand">
+        <div class="certificate-logo">SS</div>
+        <h2>Senior Saathi</h2>
+        <p>LEARN • PRACTICE • STAY SAFE</p>
+      </div>
+
+      <div class="certificate-medal">🎓</div>
+
+      <h1>Certificate of Completion</h1>
+      <div class="certificate-divider">◆ ━━━━━━━━━ ◆</div>
+
+      <p class="certificate-award-intro">This certificate is proudly awarded to</p>
+
+      <div id="certificateProfilePhoto" class="certificate-profile-photo hidden" aria-label="Learner profile picture"></div>
+      <h2 id="certificateName">Learner Name</h2>
+      <p class="certificate-age-line">Age: <strong id="certificateAge">—</strong></p>
+
+      <p class="certificate-award-copy">for successfully completing all six learning modules in the</p>
+
+      <h2 class="certificate-program">
+        Digital Literacy Training Programme
+      </h2>
+
+      <p>conducted under Senior Saathi.</p>
+
+      <div class="certificate-modules">
+
+        <div class="certificate-module">
+          <span class="module-icon icon-blue">📱</span>
+          <strong>Module 1</strong>
+          <span>Using a<br />Smartphone</span>
+        </div>
+
+        <div class="certificate-module">
+          <span class="module-icon icon-green">🌐</span>
+          <strong>Module 2</strong>
+          <span>Using the<br />Internet</span>
+        </div>
+
+        <div class="certificate-module">
+          <span class="module-icon icon-coral">🛡️</span>
+          <strong>Module 3</strong>
+          <span>Staying<br />Safe Online</span>
+        </div>
+
+        <div class="certificate-module">
+          <span class="module-icon icon-purple">👥</span>
+          <strong>Module 4</strong>
+          <span>Staying<br />Connected</span>
+        </div>
+
+        <div class="certificate-module">
+          <span class="module-icon icon-yellow">💳</span>
+          <strong>Module 5</strong>
+          <span>Digital<br />Payments</span>
+        </div>
+
+        <div class="certificate-module">
+          <span class="module-icon icon-cyan">🏛️</span>
+          <strong>Module 6</strong>
+          <span>Digital<br />Services</span>
+        </div>
+
+      </div>
+
+      <div class="certificate-bottom">
+
+        <div class="certificate-signature">
+          <span class="signature-script">Senior Saathi</span>
+          <span class="signature-line"></span>
+          <strong>Senior Saathi</strong>
+          <small>Digital Literacy Training</small>
+        </div>
+
+        <div class="certificate-issued">
+          <span id="certificateDate">Issue date</span>
+          <span class="signature-line"></span>
+          <small>Date of Issue</small>
+          <small class="certificate-reference">Certificate ID <strong id="certificateId">—</strong></small>
+        </div>
+
+        <div class="completion-stamp" role="img" aria-label="Senior Saathi digital literacy completion seal">
+          <svg viewBox="0 0 160 160" aria-hidden="true" focusable="false">
+            <defs>
+              <filter id="completionSealInk" x="-10%" y="-10%" width="120%" height="120%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.62" numOctaves="2" seed="8" result="inkGrain"></feTurbulence>
+                <feDisplacementMap in="SourceGraphic" in2="inkGrain" scale="1.1" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+              </filter>
+            </defs>
+            <g transform="translate(80 80) rotate(-8)" filter="url(#completionSealInk)" opacity="0.9" fill="none" stroke="#164b83" stroke-linecap="round" stroke-linejoin="round">
+              <circle r="67" stroke-width="5" stroke-dasharray="390 3 26 2 8 2"></circle>
+              <circle r="57" stroke-width="2.5" stroke-dasharray="330 2 22 1 13 2"></circle>
+              <circle r="30" stroke-width="3"></circle>
+              <path d="m-12 0 8 9 18-21" stroke-width="5"></path>
+              <path d="M-44-39h88M-44 39h88" stroke-width="2" opacity="0.72"></path>
+              <text y="-44" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="800" letter-spacing="1.4" fill="#164b83" stroke="none">SENIOR SAATHI</text>
+              <text y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="800" letter-spacing="1" fill="#164b83" stroke="none">COURSE COMPLETE</text>
+            </g>
+          </svg>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="certificate-actions">
+      <button type="button" onclick="printCertificate()">
+        🖨️ Print / Save PDF
+      </button>
+
+      <button type="button" onclick="closeCertificate()">
+        ✖ Close
+      </button>
+    </div>
+  </div>
+</div>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="app-footer">
+
+      <button id="openFeedbackButton" class="footer-feedback-button" type="button">💬 Feedback</button>
+
+      <div class="footer-brand">
+        🧓 <strong>Senior Saathi</strong>
+      </div>
+
+      <p>
+        Learn • Practice • Stay Safe
+      </p>
+
+      <p class="footer-copy">
+        © 2026 Senior Saathi
+      </p>
+
+    </footer>
+
+  </div>
+
+  <div id="feedbackModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="feedbackTitle">
+    <div class="modal-box feedback-modal-box">
+      <button id="closeFeedbackButton" class="modal-close" type="button" aria-label="Close feedback">✕</button>
+      <div class="modal-icon">💬</div>
+      <h2 id="feedbackTitle">Share your feedback</h2>
+      <p id="feedbackDescription">Tell us what worked or how we can improve.</p>
+
+      <form id="feedbackForm">
+        <fieldset class="feedback-rating">
+          <legend id="feedbackRatingLabel">Your rating</legend>
+          <div class="feedback-rating-options">
+            <label><input type="radio" name="feedbackRating" value="1" required><span>1</span></label>
+            <label><input type="radio" name="feedbackRating" value="2"><span>2</span></label>
+            <label><input type="radio" name="feedbackRating" value="3"><span>3</span></label>
+            <label><input type="radio" name="feedbackRating" value="4"><span>4</span></label>
+            <label><input type="radio" name="feedbackRating" value="5"><span>5</span></label>
+          </div>
+        </fieldset>
+
+        <label for="feedbackMessage" id="feedbackMessageLabel">Your comments</label>
+        <textarea id="feedbackMessage" name="message" rows="4" maxlength="1000" required placeholder="Write your feedback here"></textarea>
+        <p class="feedback-privacy" id="feedbackPrivacy">Please do not include passwords, OTPs, or payment details.</p>
+        <button id="feedbackSubmit" class="primary-button" type="submit">Send feedback</button>
+        <p id="feedbackStatus" class="feedback-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- =========================
+       LANGUAGE MODAL
+  ========================== -->
+
+  <div
+    id="languageModal"
+    class="modal hidden"
+  >
+
+    <div class="modal-box">
+
+      <button
+        id="closeLanguage"
+        class="modal-close"
+      >
+        ✕
+      </button>
+
+      <div class="modal-icon">
+        🌐
+      </div>
+
+      <h2>
+        Choose Language
+      </h2>
+
+      <p>
+        अपनी भाषा चुनें
+      </p>
+
+      <div class="language-options" data-no-translate="true">
+
+        <button data-language="en">
+          🇬🇧 English
+        </button>
+
+        <button data-language="hi">
+          🇮🇳 हिंदी
+        </button>
+
+        <button data-language="mr">🇮🇳 मराठी</button>
+        <button data-language="gu">🇮🇳 ગુજરાતી</button>
+        <button data-language="ta">🇮🇳 தமிழ்</button>
+        <button data-language="te">🇮🇳 తెలుగు</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       LESSON MODAL
+  ========================== -->
+
+  <div
+    id="lessonModal"
+    class="modal hidden"
+  >
+
+    <div class="lesson-box">
+
+      <button
+        id="closeLesson"
+        class="modal-close"
+      >
+        ✕
+      </button>
+
+      <div
+        id="lessonIcon"
+        class="lesson-icon"
+      >
+        📚
+      </div>
+
+      <span
+        id="lessonNumber"
+        class="lesson-number"
+      >
+        Module 01
+      </span>
+
+      <h2 id="lessonTitle">
+        Lesson Title
+      </h2>
+
+      <div
+        id="lessonContent"
+        class="lesson-content"
+      >
+        Lesson content will appear here.
+      </div>
+
+      <div class="lesson-actions">
+
+        <button
+          id="lessonPrev"
+          class="secondary-button"
+        >
+          ← Previous
+        </button>
+
+        <button
+          id="lessonNext"
+          class="primary-button"
+        >
+          Next →
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       QUIZ MODAL
+  ========================== -->
+
+  <div
+    id="quizModal"
+    class="modal hidden"
+  >
+
+    <div class="quiz-box">
+
+      <button
+        id="closeQuiz"
+        class="modal-close"
+      >
+        ✕
+      </button>
+
+      <div class="quiz-icon">
+        🧠
+      </div>
+
+      <h2 id="quizTitle">
+        Practice Quiz
+      </h2>
+
+      <div
+        id="quizContent"
+        class="quiz-content"
+      >
+        Quiz will appear here.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       SCAM SIMULATOR MODAL
+  ========================== -->
+
+  <div
+    id="scamModal"
+    class="modal hidden"
+  >
+
+    <div class="scam-box">
+
+      <button
+        id="closeScam"
+        class="modal-close"
+      >
+        ✕
+      </button>
+
+      <div class="scam-icon">
+        🛡️
+      </div>
+
+      <h2>
+        Scam Practice
+      </h2>
+
+      <p id="scamContent">
+        Scam practice will appear here.
+      </p>
+
+      <div
+        id="scamOptions"
+        class="scam-options"
+      ></div>
+
+    </div>
+
+  </div>
+
+ 
+
+
+  <!-- =========================
+       TOAST
+  ========================== -->
+
+  <div
+    id="toast"
+    class="toast"
+    role="status"
+  >
+    <span id="toastMessage">
+      Welcome!
+    </span>
+  </div>
+
+
+  <!-- =========================
+       JAVASCRIPT $ SUPABASE
+  ========================== -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./supabase.js"></script>
+<script src="./app.js"></script>
+
+
+  <!-- =========================
+      BUTTON AND PANEL
+      ========================-->
+
+   <button
+            id="voiceButton"
+            class="quick-card"
+          >
+
+            <span class="quick-icon">
+              🔊
+            </span>
+
+            <span>
+              <strong>Voice Help</strong>
+              <small>Listen and learn</small>
+            </span>
+
+          </button>
+ <div
+    id="voicePanel"
+    class="voice-panel hidden"
+  >
+
+    <div class="voice-panel-content">
+
+      <span class="voice-animation">
+        🔊
+      </span>
+
+      <div>
+        <strong>
+          Voice Help
+        </strong>
+
+        <p id="voiceStatus">
+          Tap to listen
+        </p>
+      </div>
+
+      <button
+        id="stopVoice"
+        class="icon-button"
+      >
+        ⏹️
+      </button>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
