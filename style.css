@@ -625,7 +625,8 @@ main {
 .module-card {
   position: relative;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
   gap: 18px;
 
   padding: 24px;
@@ -646,6 +647,17 @@ main {
     border-color var(--transition);
 
   animation: cardReveal 0.65s ease both;
+}
+
+.module-cover {
+  grid-column: 1 / -1;
+  display: block;
+  width: calc(100% + 48px);
+  height: 170px;
+  margin: -24px -24px 0;
+  object-fit: cover;
+  object-position: center 42%;
+  border-radius: var(--radius-md) var(--radius-md) 12px 12px;
 }
 
 .module-card:nth-child(1) {
@@ -1788,6 +1800,12 @@ input:focus-visible {
     padding: 19px;
 
     gap: 13px;
+  }
+
+  .module-cover {
+    width: calc(100% + 38px);
+    height: 145px;
+    margin: -19px -19px 0;
   }
 
   .module-icon {
@@ -3519,7 +3537,7 @@ body.dark-mode .slide-arrow {
   display: none;
 }
 
-.demo-login-divider {
+.guest-mode-divider {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -3528,15 +3546,15 @@ body.dark-mode .slide-arrow {
   font-size: 13px;
 }
 
-.demo-login-divider::before,
-.demo-login-divider::after {
+.guest-mode-divider::before,
+.guest-mode-divider::after {
   content: "";
   flex: 1;
   height: 1px;
   background: #e2e8f0;
 }
 
-.auth-card .demo-login-button {
+.auth-card .guest-mode-button {
   background: #0f766e;
 }
 

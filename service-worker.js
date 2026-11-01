@@ -1,4 +1,4 @@
-const CACHE_NAME = "senior-saathi-v20";
+const CACHE_NAME = "senior-saathi-v28";
 
 const FILES_TO_CACHE = [
   "./",
@@ -6,6 +6,13 @@ const FILES_TO_CACHE = [
   "./style.css",
   "./app.js",
   "./manifest.json",
+  "./carousel-art.png",
+  "./assets/module-covers/smartphone.png",
+  "./assets/module-covers/whatsapp.png",
+  "./assets/module-covers/payments.png",
+  "./assets/module-covers/internet.png",
+  "./assets/module-covers/safety.png",
+  "./assets/module-covers/services.png",
   "./assets/lesson-screenshots/smartphone.png",
   "./assets/lesson-screenshots/whatsapp.png",
   "./assets/lesson-screenshots/payments.png",
@@ -42,9 +49,13 @@ self.addEventListener("activate", (event) => {
 
 // Fetch
 self.addEventListener("fetch", (event) => {
+  // The Cache API only matches GET/HEAD by default. Let POST requests, such as
+  // the OpenStreetMap Overpass search, go straight to the network.
+  if (event.request.method !== "GET") return;
+
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       return cachedResponse || fetch(event.request);
-    })
+    }).catch(() => fetch(event.request))
   );
 });

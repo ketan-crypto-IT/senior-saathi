@@ -4457,7 +4457,7 @@ const state = {
 
   currentPage: 0,
 
-  demoMode: false,
+  guestMode: false,
 
   userId: null,
 
@@ -4503,15 +4503,15 @@ const nearbyTranslations = {
   en: {
     card: "Nearby Centres", cardDesc: "Find learning and support places near you",
     section: "📍 Nearby", title: "Nearby Centres",
-    intro: "Search OpenStreetMap for education, community, and digital learning places.",
+    intro: "Search OpenStreetMap for nearby centres and support places for older adults.",
     back: "← Back to dashboard", location: "City, area, or locality",
     placeholder: "For example: Pune, Kothrud", search: "Search area",
     radius: "Search radius", current: "Use my current location",
-    privacy: "Only map listings that mention both older adults and digital or technology learning are shown. Listings may be incomplete and are not verified providers.",
+    privacy: "Only places identified as senior-focused on the map are shown. Contact a centre to confirm its services; listings may be incomplete and are not verified.",
     retry: "Retry search", searching: "Searching map listings…",
     geocoding: "Finding that area…", locating: "Getting your location…", noArea: "We couldn't find that area. Try a city or locality name.",
-    noResults: "No mapped listings explicitly mention both senior-focused and digital/technology training in this area. Try a larger radius or another area; listings may be incomplete.",
-    resultCount: n => `${n} mapped place${n === 1 ? "" : "s"} found. Listings are not verified providers.`,
+    noResults: "No senior-focused places were found on the map in this area. Try a larger radius or another area; listings may be incomplete.",
+    resultCount: n => `${n} senior-focused map listing${n === 1 ? "" : "s"} found. Services are not verified.`,
     emptySearch: "Enter a city, area, or locality first.",
     geoDenied: "Location permission was denied. Allow location access in your browser, or search by area instead.",
     geoUnavailable: "Your location is unavailable right now. Search by area or try again later.",
@@ -4527,15 +4527,15 @@ const nearbyTranslations = {
   hi: {
     card: "आस-पास के केंद्र", cardDesc: "पास के सीखने और सहायता केंद्र खोजें",
     section: "📍 आस-पास", title: "आस-पास के केंद्र",
-    intro: "OpenStreetMap पर शिक्षा, समुदाय और डिजिटल सीखने की जगहें खोजें।",
+    intro: "OpenStreetMap पर वरिष्ठ नागरिकों के लिए पास के केंद्र और सहायता स्थल खोजें।",
     back: "← डैशबोर्ड पर लौटें", location: "शहर, इलाका या मोहल्ला",
     placeholder: "उदाहरण: पुणे, कोथरुड", search: "इलाका खोजें",
     radius: "खोज का दायरा", current: "मेरी वर्तमान लोकेशन इस्तेमाल करें",
-    privacy: "सिर्फ उन जगहों को दिखाया जाएगा जिनकी सूची में वरिष्ठ नागरिकों और डिजिटल/तकनीकी सीखने का उल्लेख है। जानकारी अधूरी हो सकती है और केंद्र सत्यापित नहीं हैं।",
+    privacy: "नक्शे पर वरिष्ठ नागरिकों के लिए पहचाने गए स्थान ही दिखेंगे। सेवाओं की पुष्टि केंद्र से करें; जानकारी अधूरी और असत्यापित हो सकती है।",
     retry: "फिर से खोजें", searching: "नक्शे की जगहें खोजी जा रही हैं…",
     geocoding: "इलाका खोजा जा रहा है…", locating: "आपकी लोकेशन ली जा रही है…", noArea: "यह इलाका नहीं मिला। शहर या मोहल्ले का नाम आज़माएँ।",
-    noResults: "इस इलाके में वरिष्ठ नागरिकों के लिए डिजिटल/तकनीकी प्रशिक्षण का स्पष्ट उल्लेख करने वाली जगह नहीं मिली। बड़ा दायरा या दूसरा इलाका आज़माएँ; सूची अधूरी हो सकती है।",
-    resultCount: n => `${n} जगह नक्शे पर मिली। ये सत्यापित सेवा केंद्र नहीं हैं।`,
+    noResults: "इस इलाके में नक्शे पर वरिष्ठ नागरिकों के लिए कोई जगह नहीं मिली। बड़ा दायरा या दूसरा इलाका आज़माएँ; जानकारी अधूरी हो सकती है।",
+    resultCount: n => `नक्शे पर वरिष्ठ नागरिकों के लिए ${n} जगह मिली। सेवाओं की पुष्टि नहीं हुई है।`,
     emptySearch: "पहले शहर, इलाके या मोहल्ले का नाम लिखें।",
     geoDenied: "लोकेशन की अनुमति नहीं मिली। ब्राउज़र में अनुमति दें या इलाके से खोजें।",
     geoUnavailable: "अभी आपकी लोकेशन नहीं मिल सकी। इलाके से खोजें या बाद में फिर कोशिश करें।",
@@ -4551,15 +4551,15 @@ const nearbyTranslations = {
   mr: {
     card: "जवळची केंद्रे", cardDesc: "जवळची शिक्षण व मदत केंद्रे शोधा",
     section: "📍 जवळपास", title: "जवळची केंद्रे",
-    intro: "OpenStreetMap वर शिक्षण, समुदाय आणि डिजिटल शिक्षणाची ठिकाणे शोधा.",
+    intro: "OpenStreetMap वर ज्येष्ठ नागरिकांसाठी जवळची केंद्रे आणि मदतीची ठिकाणे शोधा.",
     back: "← डॅशबोर्डवर परत", location: "शहर, परिसर किंवा वस्ती",
     placeholder: "उदाहरण: पुणे, कोथरूड", search: "परिसर शोधा",
     radius: "शोधाचे अंतर", current: "माझे सध्याचे स्थान वापरा",
-    privacy: "ज्या नोंदींमध्ये ज्येष्ठ नागरिक आणि डिजिटल/तंत्रज्ञान शिक्षणाचा उल्लेख आहे तीच ठिकाणे दिसतील. माहिती अपूर्ण असू शकते; केंद्रे सत्यापित नाहीत.",
+    privacy: "नकाशावर ज्येष्ठ नागरिकांसाठी असल्याचे नमूद केलेली ठिकाणेच दिसतील. सेवा केंद्राशी तपासा; माहिती अपूर्ण किंवा असत्यापित असू शकते.",
     retry: "पुन्हा शोधा", searching: "नकाशावरील ठिकाणे शोधत आहे…",
     geocoding: "परिसर शोधत आहे…", locating: "तुमचे स्थान घेत आहे…", noArea: "हा परिसर सापडला नाही. शहर किंवा वस्तीचे नाव वापरून पाहा.",
-    noResults: "या परिसरात ज्येष्ठ नागरिकांसाठी डिजिटल/तंत्रज्ञान प्रशिक्षणाचा स्पष्ट उल्लेख असलेली जागा सापडली नाही. अधिक अंतर किंवा दुसरा परिसर शोधा; माहिती अपूर्ण असू शकते.",
-    resultCount: n => `${n} ठिकाणे नकाशावर सापडली. ही सत्यापित सेवा केंद्रे नाहीत.`,
+    noResults: "या परिसरात नकाशावर ज्येष्ठ नागरिकांसाठी ठिकाण सापडले नाही. अधिक अंतर किंवा दुसरा परिसर शोधा; माहिती अपूर्ण असू शकते.",
+    resultCount: n => `ज्येष्ठ नागरिकांसाठी ${n} ठिकाणे नकाशावर सापडली. सेवा तपासलेल्या नाहीत.`,
     emptySearch: "आधी शहर, परिसर किंवा वस्तीचे नाव लिहा.",
     geoDenied: "स्थान वापरण्याची परवानगी नाकारली. ब्राउझरमध्ये परवानगी द्या किंवा परिसर शोधा.",
     geoUnavailable: "आत्ता तुमचे स्थान मिळू शकले नाही. परिसर शोधा किंवा नंतर पुन्हा प्रयत्न करा.",
@@ -4574,11 +4574,11 @@ const nearbyTranslations = {
   },
   gu: {
     card: "નજીકનાં કેન્દ્રો", cardDesc: "નજીકનાં શિક્ષણ અને સહાય કેન્દ્રો શોધો", section: "📍 નજીકમાં", title: "નજીકનાં કેન્દ્રો",
-    intro: "શિક્ષણ, સમુદાય અને ડિજિટલ શિક્ષણનાં સ્થળો શોધો.", back: "← ડેશબોર્ડ પર પાછા જાઓ", location: "શહેર, વિસ્તાર અથવા મહોલ્લો",
+    intro: "નકશા પર વરિષ્ઠ નાગરિકો માટે નજીકનાં કેન્દ્રો અને સહાયનાં સ્થળો શોધો.", back: "← ડેશબોર્ડ પર પાછા જાઓ", location: "શહેર, વિસ્તાર અથવા મહોલ્લો",
     placeholder: "ઉદાહરણ: અમદાવાદ, મણિનગર", search: "વિસ્તાર શોધો", radius: "શોધનું અંતર", current: "મારું વર્તમાન સ્થાન વાપરો",
-    privacy: "ફક્ત વરિષ્ઠ નાગરિકો અને ડિજિટલ/ટેકનોલોજી શિક્ષણનો ઉલ્લેખ કરતી યાદીઓ જ દેખાશે. માહિતી અધૂરી હોઈ શકે છે અને કેન્દ્રોની ચકાસણી થયેલી નથી.", retry: "ફરી શોધો", searching: "નકશાનાં સ્થળો શોધાઈ રહ્યાં છે…",
+    privacy: "નકશા પર વરિષ્ઠ નાગરિકો માટેનાં સ્થળો જ દેખાશે. સેવાઓની પુષ્ટિ કેન્દ્ર સાથે કરો; માહિતી અધૂરી કે અચકાસેલી હોઈ શકે છે.", retry: "ફરી શોધો", searching: "નકશાનાં સ્થળો શોધાઈ રહ્યાં છે…",
     geocoding: "વિસ્તાર શોધાઈ રહ્યો છે…", locating: "તમારું સ્થાન મેળવી રહ્યાં છીએ…", noArea: "આ વિસ્તાર મળ્યો નથી. શહેર અથવા મહોલ્લાનું નામ અજમાવો.",
-    noResults: "આ વિસ્તારમાં વરિષ્ઠ નાગરિકો માટે ડિજિટલ/ટેકનોલોજી તાલીમનો સ્પષ્ટ ઉલ્લેખ કરતી યાદી મળી નથી. વધુ અંતર અથવા બીજો વિસ્તાર અજમાવો; માહિતી અધૂરી હોઈ શકે છે.", resultCount: n => `${n} જગ્યાની યાદીમાં વરિષ્ઠ નાગરિકો અને ડિજિટલ તાલીમનો ઉલ્લેખ છે; આ ચકાસેલાં કેન્દ્રો નથી.`,
+    noResults: "આ વિસ્તારમાં વરિષ્ઠ નાગરિકો માટેનું સ્થળ નકશા પર મળ્યું નથી. વધુ અંતર અથવા બીજો વિસ્તાર અજમાવો; માહિતી અધૂરી હોઈ શકે છે.", resultCount: n => `નકશા પર વરિષ્ઠ નાગરિકો માટેનાં ${n} સ્થળ મળ્યાં. સેવાઓ ચકાસેલી નથી.`,
     emptySearch: "પહેલાં શહેર, વિસ્તાર અથવા મહોલ્લો લખો.", geoDenied: "સ્થાનની પરવાનગી ન મળી. બ્રાઉઝરમાં પરવાનગી આપો અથવા વિસ્તાર શોધો.",
     geoUnavailable: "હમણાં તમારું સ્થાન મળ્યું નથી. વિસ્તાર શોધો અથવા પછી ફરી પ્રયાસ કરો.", geoTimeout: "સ્થાન મેળવવામાં વધુ સમય લાગ્યો. ફરી પ્રયાસ કરો.",
     geoUnsupported: "આ બ્રાઉઝર સ્થાન આપી શકતું નથી. વિસ્તાર શોધો.", apiBusy: "નકશા સેવા વ્યસ્ત છે. 30 સેકન્ડ પછી ફરી પ્રયાસ કરો.",
@@ -4588,11 +4588,11 @@ const nearbyTranslations = {
   },
   ta: {
     card: "அருகிலுள்ள மையங்கள்", cardDesc: "அருகிலுள்ள கற்றல் மற்றும் உதவி மையங்களைக் கண்டறியுங்கள்", section: "📍 அருகில்", title: "அருகிலுள்ள மையங்கள்",
-    intro: "கல்வி, சமூக மற்றும் டிஜிட்டல் கற்றல் இடங்களைத் தேடுங்கள்.", back: "← முகப்புப் பலகைக்குத் திரும்பு", location: "நகரம், பகுதி அல்லது வட்டாரம்",
+    intro: "முதியோருக்கான அருகிலுள்ள மையங்கள் மற்றும் உதவி இடங்களை OpenStreetMap-ல் தேடுங்கள்.", back: "← முகப்புப் பலகைக்குத் திரும்பு", location: "நகரம், பகுதி அல்லது வட்டாரம்",
     placeholder: "எடுத்துக்காட்டு: சென்னை, அடையாறு", search: "பகுதியைத் தேடு", radius: "தேடல் தூரம்", current: "எனது தற்போதைய இடத்தைப் பயன்படுத்து",
-    privacy: "முதியோர் மற்றும் டிஜிட்டல்/தொழில்நுட்பக் கற்றலைக் குறிப்பிடும் இடங்கள் மட்டுமே காட்டப்படும். தகவல் முழுமையற்றதாக இருக்கலாம்; மையங்கள் சரிபார்க்கப்படவில்லை.", retry: "மீண்டும் தேடு", searching: "வரைபட இடங்களைத் தேடுகிறது…",
+    privacy: "முதியோருக்கானவை என வரைபடத்தில் குறிக்கப்பட்ட இடங்கள் மட்டுமே காட்டப்படும். சேவைகளை மையத்திடம் உறுதிசெய்யவும்; தகவல் முழுமையற்றதாக இருக்கலாம்.", retry: "மீண்டும் தேடு", searching: "வரைபட இடங்களைத் தேடுகிறது…",
     geocoding: "பகுதியைக் கண்டறிகிறது…", locating: "உங்கள் இடத்தைப் பெறுகிறது…", noArea: "இந்தப் பகுதி கிடைக்கவில்லை. நகரம் அல்லது வட்டாரப் பெயரை முயற்சிக்கவும்.",
-    noResults: "இந்தப் பகுதியில் முதியோருக்கான டிஜிட்டல்/தொழில்நுட்பப் பயிற்சியைக் குறிப்பிடும் இடம் கிடைக்கவில்லை. அதிக தூரம் அல்லது வேறு பகுதியை முயற்சிக்கவும்; தகவல் முழுமையற்றிருக்கலாம்.", resultCount: n => `முதியோர் மற்றும் டிஜிட்டல் பயிற்சியைக் குறிப்பிடும் ${n} இடங்கள் கிடைத்தன; இவை சரிபார்க்கப்பட்ட மையங்கள் அல்ல.`,
+    noResults: "இந்தப் பகுதியில் முதியோருக்கான இடங்கள் வரைபடத்தில் கிடைக்கவில்லை. அதிக தூரம் அல்லது வேறு பகுதியை முயற்சிக்கவும்; தகவல் முழுமையற்றிருக்கலாம்.", resultCount: n => `முதியோருக்கான ${n} இடங்கள் வரைபடத்தில் கிடைத்தன; சேவைகள் உறுதிப்படுத்தப்படவில்லை.`,
     emptySearch: "முதலில் நகரம், பகுதி அல்லது வட்டாரத்தை உள்ளிடுங்கள்.", geoDenied: "இட அனுமதி மறுக்கப்பட்டது. உலாவியில் அனுமதி அளிக்கவும் அல்லது பகுதியைத் தேடவும்.",
     geoUnavailable: "தற்போது உங்கள் இடம் கிடைக்கவில்லை. பகுதியைத் தேடவும் அல்லது பின்னர் முயற்சிக்கவும்.", geoTimeout: "இடத்தைப் பெற அதிக நேரம் ஆனது. மீண்டும் முயற்சிக்கவும்.",
     geoUnsupported: "இந்த உலாவி இடத்தை வழங்காது. பகுதியைத் தேடவும்.", apiBusy: "வரைபடச் சேவை பிஸியாக உள்ளது. 30 விநாடிகள் கழித்து முயற்சிக்கவும்.",
@@ -4602,11 +4602,11 @@ const nearbyTranslations = {
   },
   te: {
     card: "దగ్గరలోని కేంద్రాలు", cardDesc: "దగ్గరలోని విద్య, సహాయ కేంద్రాలను కనుగొనండి", section: "📍 దగ్గరలో", title: "దగ్గరలోని కేంద్రాలు",
-    intro: "విద్య, సమాజం, డిజిటల్ అభ్యాస ప్రదేశాలను వెతకండి.", back: "← డ్యాష్‌బోర్డ్‌కు తిరిగి వెళ్ళండి", location: "నగరం, ప్రాంతం లేదా కాలనీ",
+    intro: "వృద్ధుల కోసం దగ్గరలోని కేంద్రాలు, సహాయ ప్రదేశాలను OpenStreetMapలో వెతకండి.", back: "← డ్యాష్‌బోర్డ్‌కు తిరిగి వెళ్ళండి", location: "నగరం, ప్రాంతం లేదా కాలనీ",
     placeholder: "ఉదాహరణ: హైదరాబాద్, అమీర్‌పేట్", search: "ప్రాంతాన్ని వెతకండి", radius: "వెతుకులాట పరిధి", current: "నా ప్రస్తుత స్థానాన్ని ఉపయోగించండి",
-    privacy: "వృద్ధులు మరియు డిజిటల్/సాంకేతిక అభ్యాసం గురించి స్పష్టంగా పేర్కొన్న ప్రదేశాలనే చూపిస్తాం. వివరాలు అసంపూర్ణంగా ఉండవచ్చు; కేంద్రాలు ధృవీకరించబడలేదు.", retry: "మళ్లీ వెతకండి", searching: "మ్యాప్ ప్రదేశాలను వెతుకుతోంది…",
+    privacy: "మ్యాప్‌లో వృద్ధుల కోసం గుర్తించిన ప్రదేశాలనే చూపిస్తాం. సేవలను కేంద్రంతో నిర్ధారించండి; వివరాలు అసంపూర్ణంగా ఉండవచ్చు.", retry: "మళ్లీ వెతకండి", searching: "మ్యాప్ ప్రదేశాలను వెతుకుతోంది…",
     geocoding: "ఆ ప్రాంతాన్ని కనుగొంటోంది…", locating: "మీ స్థానాన్ని పొందుతోంది…", noArea: "ఈ ప్రాంతం దొరకలేదు. నగరం లేదా కాలనీ పేరును ప్రయత్నించండి.",
-    noResults: "ఈ ప్రాంతంలో వృద్ధుల కోసం డిజిటల్/సాంకేతిక శిక్షణను స్పష్టంగా పేర్కొన్న ప్రదేశం దొరకలేదు. పెద్ద పరిధి లేదా వేరే ప్రాంతాన్ని ప్రయత్నించండి; సమాచారం అసంపూర్ణంగా ఉండవచ్చు.", resultCount: n => `వృద్ధులు మరియు డిజిటల్ శిక్షణను పేర్కొన్న ${n} ప్రదేశాలు దొరికాయి; ఇవి ధృవీకరించిన కేంద్రాలు కావు.`,
+    noResults: "ఈ ప్రాంతంలో వృద్ధుల కోసం ప్రదేశాలు మ్యాప్‌లో కనిపించలేదు. పెద్ద పరిధి లేదా వేరే ప్రాంతాన్ని ప్రయత్నించండి; సమాచారం అసంపూర్ణంగా ఉండవచ్చు.", resultCount: n => `వృద్ధుల కోసం ${n} ప్రదేశాలు మ్యాప్‌లో కనిపించాయి; సేవలు ధృవీకరించబడలేదు.`,
     emptySearch: "ముందుగా నగరం, ప్రాంతం లేదా కాలనీని నమోదు చేయండి.", geoDenied: "స్థాన అనుమతి నిరాకరించబడింది. బ్రౌజర్‌లో అనుమతించండి లేదా ప్రాంతాన్ని వెతకండి.",
     geoUnavailable: "ప్రస్తుతం మీ స్థానం అందుబాటులో లేదు. ప్రాంతాన్ని వెతకండి లేదా తర్వాత ప్రయత్నించండి.", geoTimeout: "స్థానాన్ని పొందడానికి ఎక్కువ సమయం పట్టింది. మళ్లీ ప్రయత్నించండి.",
     geoUnsupported: "ఈ బ్రౌజర్ స్థానాన్ని ఇవ్వలదు. ప్రాంతాన్ని వెతకండి.", apiBusy: "మ్యాప్ సేవ బిజీగా ఉంది. 30 సెకన్ల తర్వాత మళ్లీ ప్రయత్నించండి.",
@@ -5512,33 +5512,27 @@ function setNearbyBusy(busy) {
   });
 }
 
-function isSeniorDigitalTrainingPlace(place) {
+function isSeniorSupportPlace(place) {
   const tags = place.tags || {};
   const text = [
     place.name,
     tags["name:en"],
     tags["name:hi"],
+    tags["name:mr"],
+    tags["name:gu"],
+    tags["name:ta"],
+    tags["name:te"],
     tags.description,
     tags["description:en"],
     tags["contact:description"],
-    tags.operator,
-    tags.subject,
-    tags.course,
-    tags.training,
-    tags.education,
-    tags.amenity,
-    tags.office,
-    tags.club,
-    tags.social_facility,
-    tags.audience,
-    tags.target,
-    tags.specialty,
-    tags.service
+    tags.operator
   ].filter(Boolean).join(" ").toLowerCase();
-  const servesOlderAdults = /senior|elder(?:ly)?|older adults?|older people|retir(?:e|ed|ee|ees)|aged|old age|वरिष्ठ|बुजुर्ग|बुज़ुर्ग|वृद्ध|ज्येष्ठ|વૃદ્ધ|વરિષ્ઠ|முதியோர்|மூத்த குடிமக்கள்|వృద్ధ|వయోవృద్ధ/.test(text);
-  const digitalLearning = /digital|computer|technology|smart ?phone|mobile|internet|cyber|ict|ડિજિટલ|કમ્પ્યુટર|ટેકનોલોજી|இணைய|கணினி|தொழில்நுட்ப|டிஜிட்டல்|డిజిటల్|కంప్యూటర్|సాంకేతిక|ఇంటర్నెట్/.test(text);
-  const learningActivity = /train(?:ing)?|teach(?:ing)?|class(?:es)?|course|learn(?:ing)?|literacy|education|skill|workshop|शिक्षण|शिक्षा|प्रशिक्षण|सीख|તાલીમ|શિક્ષણ|વર્ગ|கற்றல்|பயிற்சி|வகுப்பு|கல்வி|శిక్షణ|తరగతి|విద్య|అభ్యాసం/.test(text) || ["training", "adult_education"].includes(tags.amenity) || tags.education === "adult";
-  return servesOlderAdults && digitalLearning && learningActivity;
+  const seniorMention = /senior citizens?|senior (?:cent(?:er|re)|club|care|support|services?|day care|association)|elder(?:ly)?|older adults?|older people|old age (?:home|cent(?:er|re)|care)|retir(?:ee|ees|ement)|jyeshtha nagrik|varishtha nagrik|वरिष्ठ नागरिक|ज्येष्ठ नागरिक|बुजुर्ग(?:ों)? (?:केंद्र|आश्रम)|बुज़ुर्ग(?:ों)? (?:केंद्र|आश्रम)|वृद्धाश्रम|ज्येष्ठ|વૃદ્ધાશ્રમ|વરિષ્ઠ નાગરિક|વૃદ્ધ નાગરિક|முதியோர்|மூத்த குடிமக்கள்|వృద్ధాశ్రమ|వృద్ధుల కేంద్ర|వయోవృద్ధ/.test(text);
+  const audienceTags = [tags["social_facility:for"], tags["community_centre:for"], tags.club]
+    .filter(Boolean).join(";").toLowerCase().split(/[;,]/).map(value => value.trim());
+  const seniorAudience = audienceTags.some(value => ["senior", "seniors", "elderly"].includes(value));
+  const residentialFacility = /^(nursing_home|assisted_living|retirement_home|group_home)$/.test((tags.social_facility || "").toLowerCase());
+  return (seniorMention || seniorAudience) && !residentialFacility;
 }
 
 async function searchNearbyCentres(mode) {
@@ -5651,7 +5645,8 @@ async function fetchNearbyPlaces(point, radius, source) {
         setNearbyStatus(t.waiting, "loading");
         await new Promise(resolve => setTimeout(resolve, waitMs));
       }
-      const query = `[out:json][timeout:25];(nwr(around:${radius},${point.lat},${point.lon})[amenity~"^(school|college|university|library|community_centre|social_centre|training|adult_education|language_school)$"];nwr(around:${radius},${point.lat},${point.lon})[office~"^(educational_institution|ngo|association)$"];nwr(around:${radius},${point.lat},${point.lon})[social_facility~"^(outreach|social_centre|group_home|senior)$"];nwr(around:${radius},${point.lat},${point.lon})[education="adult"];);out center tags 100;`;
+      const seniorKeywords = "senior citizens?|senior (cent(er|re)|club|care|support|services?|day care|association)|elderly|older adults?|older people|old age (home|cent(er|re)|care)|retiree|retirement|jyeshtha nagrik|varishtha nagrik|वरिष्ठ नागरिक|ज्येष्ठ नागरिक|बुजुर्गों का केंद्र|बुज़ुर्गों का केंद्र|वृद्धाश्रम|વરિષ્ઠ નાગરિક|વૃદ્ધ નાગરિક|વૃદ્ધાશ્રમ|મુખ્ય વૃદ્ધ|முதியோர்|மூத்த குடிமக்கள்|వృద్ధాశ్రమ|వృద్ధుల కేంద్ర|వయోవృద్ధ";
+      const query = `[out:json][timeout:25];(nwr(around:${radius},${point.lat},${point.lon})[amenity=social_facility]["social_facility:for"~"^(senior|elderly)$",i];nwr(around:${radius},${point.lat},${point.lon})[amenity=community_centre]["community_centre:for"~"senior|elderly",i];nwr(around:${radius},${point.lat},${point.lon})[club~"^(senior|seniors|elderly)$",i];nwr(around:${radius},${point.lat},${point.lon})[name~"${seniorKeywords}",i];nwr(around:${radius},${point.lat},${point.lon})[description~"${seniorKeywords}",i];);out center tags 100;`;
       nearbyLastOverpassRequestAt = Date.now();
       const response = await fetch("https://overpass-api.de/api/interpreter", {
         method: "POST",
@@ -5672,7 +5667,7 @@ async function fetchNearbyPlaces(point, radius, source) {
       places = places.filter(place => !seen.has(place.id) && seen.add(place.id));
       try { sessionStorage.setItem(key, JSON.stringify({ at: Date.now(), places })); } catch { /* Storage may be disabled. */ }
     }
-    places = places.filter(isSeniorDigitalTrainingPlace);
+    places = places.filter(isSeniorSupportPlace);
     renderNearbyPlaces(places, point, source);
     setNearbyStatus(places.length ? t.resultCount(places.length) : t.noResults, places.length ? "success" : "empty");
   } catch (error) {
@@ -5813,7 +5808,7 @@ async function saveName() {
     return;
   }
 
-  if (state.demoMode) {
+  if (state.guestMode) {
     const client = window.seniorSaathiSupabase;
     if (!client) {
       showToast("Database is unavailable. Check the Supabase connection.", 10000);
@@ -5836,11 +5831,11 @@ async function saveName() {
     try {
       await persistLearnerProfile({ name });
 
-      if (state.demoMode) {
-        const { error: demoError } = await window.seniorSaathiSupabase
-          .from("demo_login_events")
-          .insert({ source: "presentation_demo", learner_name: name });
-        if (demoError) throw demoError;
+      if (state.guestMode) {
+        const { error: guestModeError } = await window.seniorSaathiSupabase
+          .from("guest_mode_events")
+          .insert({ source: "guest_mode", learner_name: name });
+        if (guestModeError) throw guestModeError;
       }
     } catch (error) {
       console.error("Could not save profile to Supabase:", error);
@@ -7754,28 +7749,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const otpInput = document.getElementById("loginOtp");
   const message = document.getElementById("authMessage");
   const sendButton = document.getElementById("sendOtpButton");
-  const demoLoginButton = document.getElementById("demoLoginButton");
+  const guestModeButton = document.getElementById("guestModeButton");
 
-  demoLoginButton?.addEventListener("click", async () => {
-    demoLoginButton.disabled = true;
-    if (message) message.textContent = "Opening demo and saving the visit...";
+  guestModeButton?.addEventListener("click", async () => {
+    guestModeButton.disabled = true;
+    if (message) message.textContent = "Starting guest session...";
 
     try {
       if (!client) throw new Error("Supabase did not load. Check the connection.");
       const { data, error } = await client.auth.signInAnonymously();
       if (error) throw error;
-      if (!data.user) throw new Error("Supabase did not return a demo user.");
+      if (!data.user) throw new Error("Supabase did not return a guest session.");
       state.userId = data.user.id;
     } catch (error) {
-      console.error("Could not create demo user:", error);
+      console.error("Could not create guest session:", error);
       if (message) {
-        message.textContent = `Could not start database demo: ${error.message}. Enable Anonymous Sign-Ins in Supabase Auth settings, then try again.`;
+        message.textContent = `Could not start guest mode: ${error.message}. Enable Anonymous Sign-Ins in Supabase Auth settings, then try again.`;
       }
-      demoLoginButton.disabled = false;
+      guestModeButton.disabled = false;
       return;
     }
 
-    state.demoMode = true;
+    state.guestMode = true;
     state.userName = "";
     state.userAge = null;
     state.completedLessons = [];
@@ -7798,9 +7793,9 @@ document.addEventListener("DOMContentLoaded", () => {
     scheduleRemoteTranslation();
     updateDashboard();
     updateUserWelcome();
-    showToast("Demo ready. Enter your name on the dashboard.");
+    showToast("Guest mode is ready. Enter your name on the dashboard.");
     nameInput?.focus();
-    demoLoginButton.disabled = false;
+    guestModeButton.disabled = false;
   });
 
 
@@ -7882,7 +7877,7 @@ if (!client || !emailForm || !otpForm || !authScreen) {
 
     if (data.session) {
       state.userId = data.session.user.id;
-      state.demoMode = Boolean(data.session.user.is_anonymous);
+      state.guestMode = Boolean(data.session.user.is_anonymous);
       try {
         await syncLearnerProfileFromDatabase(state.userId);
       } catch (profileError) {
