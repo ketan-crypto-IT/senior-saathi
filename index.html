@@ -128,9 +128,9 @@
       <button type="submit">Verify and sign in</button>
     </form>
 
-    <div class="demo-login-divider"><span>Presentation demo</span></div>
-    <button type="button" id="demoLoginButton" class="demo-login-button">
-      Open Demo App
+    <div class="guest-mode-divider"><span>Guest mode</span></div>
+    <button type="button" id="guestModeButton" class="guest-mode-button">
+      Continue as Guest
     </button>
 
     <p id="authMessage" role="status" aria-live="polite"></p>
@@ -464,6 +464,8 @@
             data-module="smartphone"
           >
 
+            <img class="module-cover" src="./assets/module-covers/smartphone.png" alt="Senior learning to use smartphone features">
+
             <div class="module-icon blue">
               📱
             </div>
@@ -501,6 +503,8 @@
             class="module-card"
             data-module="whatsapp"
           >
+
+            <img class="module-cover" src="./assets/module-covers/whatsapp.png" alt="Senior learning to send messages and share photos">
 
             <div class="module-icon green">
               💬
@@ -540,6 +544,8 @@
             data-module="payments"
           >
 
+            <img class="module-cover" src="./assets/module-covers/payments.png" alt="Senior scanning a QR code for a digital payment">
+
             <div class="module-icon purple">
               💳
             </div>
@@ -577,6 +583,8 @@
             class="module-card"
             data-module="internet"
           >
+
+            <img class="module-cover" src="./assets/module-covers/internet.png" alt="Senior using internet search on a smartphone">
 
             <div class="module-icon orange">
               🌐
@@ -616,6 +624,8 @@
             data-module="safety"
           >
 
+            <img class="module-cover" src="./assets/module-covers/safety.png" alt="Senior checking a suspicious message and protecting online information">
+
             <div class="module-icon red">
               🛡️
             </div>
@@ -653,6 +663,8 @@
             class="module-card"
             data-module="services"
           >
+
+            <img class="module-cover" src="./assets/module-covers/services.png" alt="Senior using government and everyday digital services">
 
             <div class="module-icon teal">
               🏛️
@@ -775,7 +787,7 @@
           <div>
             <span class="section-label" id="nearbySectionLabel">📍 Nearby</span>
             <h2 id="nearbyCentresHeading">Nearby Centres</h2>
-            <p id="nearbyIntro">Search OpenStreetMap for education, community, and digital learning places.</p>
+            <p id="nearbyIntro">Search OpenStreetMap for nearby centres and support places for older adults.</p>
           </div>
           <button id="nearbyBackButton" class="secondary-button" type="button">← Back to dashboard</button>
         </div>
@@ -798,7 +810,7 @@
             </div>
             <button id="nearbyUseLocationButton" class="secondary-button" type="button">Use my current location</button>
           </div>
-          <p class="nearby-privacy-note" id="nearbyPrivacyNote">Your browser will ask before sharing your location. Search places are OpenStreetMap listings and are not verified training providers.</p>
+          <p class="nearby-privacy-note" id="nearbyPrivacyNote">Only places identified as senior-focused on the map are shown. Contact a centre to confirm its services; listings may be incomplete and are not verified.</p>
         </div>
 
         <p id="nearbyStatus" class="nearby-status" role="status" aria-live="polite"></p>
